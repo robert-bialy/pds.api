@@ -1,0 +1,14 @@
+C:\Users\Konrad\Desktop\C# learning\Praca dla Roberta\Prosta aplikacja konsolowa\bin\Debug\net8.0\Prosta aplikacja konsolowa.exe
+C:\Users\Konrad\Desktop\C# learning\Praca dla Roberta\Prosta aplikacja konsolowa\bin\Debug\net8.0\Prosta aplikacja konsolowa.deps.json
+C:\Users\Konrad\Desktop\C# learning\Praca dla Roberta\Prosta aplikacja konsolowa\bin\Debug\net8.0\Prosta aplikacja konsolowa.runtimeconfig.json
+C:\Users\Konrad\Desktop\C# learning\Praca dla Roberta\Prosta aplikacja konsolowa\bin\Debug\net8.0\Prosta aplikacja konsolowa.dll
+C:\Users\Konrad\Desktop\C# learning\Praca dla Roberta\Prosta aplikacja konsolowa\bin\Debug\net8.0\Prosta aplikacja konsolowa.pdb
+C:\Users\Konrad\Desktop\C# learning\Praca dla Roberta\Prosta aplikacja konsolowa\obj\Debug\net8.0\Prosta aplikacja konsolowa.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Konrad\Desktop\C# learning\Praca dla Roberta\Prosta aplikacja konsolowa\obj\Debug\net8.0\Prosta aplikacja konsolowa.AssemblyInfoInputs.cache
+C:\Users\Konrad\Desktop\C# learning\Praca dla Roberta\Prosta aplikacja konsolowa\obj\Debug\net8.0\Prosta aplikacja konsolowa.AssemblyInfo.cs
+C:\Users\Konrad\Desktop\C# learning\Praca dla Roberta\Prosta aplikacja konsolowa\obj\Debug\net8.0\Prosta aplikacja konsolowa.csproj.CoreCompileInputs.cache
+C:\Users\Konrad\Desktop\C# learning\Praca dla Roberta\Prosta aplikacja konsolowa\obj\Debug\net8.0\Prosta aplikacja konsolowa.dll
+C:\Users\Konrad\Desktop\C# learning\Praca dla Roberta\Prosta aplikacja konsolowa\obj\Debug\net8.0\refint\Prosta aplikacja konsolowa.dll
+C:\Users\Konrad\Desktop\C# learning\Praca dla Roberta\Prosta aplikacja konsolowa\obj\Debug\net8.0\Prosta aplikacja konsolowa.pdb
+C:\Users\Konrad\Desktop\C# learning\Praca dla Roberta\Prosta aplikacja konsolowa\obj\Debug\net8.0\Prosta aplikacja konsolowa.genruntimeconfig.cache
+C:\Users\Konrad\Desktop\C# learning\Praca dla Roberta\Prosta aplikacja konsolowa\obj\Debug\net8.0\ref\Prosta aplikacja konsolowa.dll
