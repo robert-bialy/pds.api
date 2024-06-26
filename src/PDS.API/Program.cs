@@ -44,6 +44,7 @@ static class Program
             await GetPackageByCustomerKey();
         }
     }
+
     private static async Task GetCustomers()
     {
         var httpClient = new HttpClient();
@@ -78,6 +79,7 @@ static class Program
         }
 
     }
+
     private static async Task GetConsignments()
     {
         var httpClient = new HttpClient();
@@ -103,6 +105,7 @@ static class Program
             }
         }
     }
+
     private static async Task GetCustomerByCustomerKey()
     {
         Console.WriteLine("Please input the customer key");
@@ -183,6 +186,7 @@ static class Program
             Console.WriteLine("Consignment not found.");
         }
     }
+
     private static async Task GetConsignmentByPackageKey()
     {
         Console.WriteLine("Please input the package key");
