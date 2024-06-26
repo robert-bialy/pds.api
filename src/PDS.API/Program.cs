@@ -2,7 +2,6 @@
 using System.Net.NetworkInformation;
 using System.Text.Json;
 using PDS.API.Models;
-using PDS.API.Services;
 
 namespace PDS.API;
 
@@ -10,7 +9,7 @@ static class Program
 {
     public static async Task Main()
     {
-        Console.WriteLine("For get documents/ customers press 1, for get documents/ packages press 2, for get documents/ cosignments press 3, for GetCustomerById press 4, for GetPackageById press 5, for GetConsignmentById press 6");
+        Console.WriteLine("For get documents/ customers press 1, for get documents/ packages press 2, for get documents/ cosignments press 3, for GetCustomerByCustomerKey press 4, for GetPackageByPackageKey press 5, for GetConsignmentByConsignmentKey press 6, for GetConsignmentByPackageKey press 7, for GetPackageByCustomerKey press 8");
         var userInput = Console.ReadLine() ?? "";
         if (userInput == "1")
         {
@@ -26,15 +25,23 @@ static class Program
         }
         if (userInput == "4")
         {
-            await GetCustomerById();
-        }   
+            await GetCustomerByCustomerKey();
+        }
         if (userInput == "5")
         {
-            await GetPackageById();
+            await GetPackageByPackageKey();
+        }
+        if (userInput == "6")
+        {
+            await GetConsignmentByConsignmentKey();
+        }
+        if (userInput == "7")
+        {
+            await GetConsignmentByPackageKey();
         }
         else
         {
-            await GetConsignmentById();
+            await GetPackageByCustomerKey();
         }
     }
     private static async Task GetCustomers()
@@ -96,14 +103,14 @@ static class Program
             }
         }
     }
-    private static async Task GetCustomerById()
+    private static async Task GetCustomerByCustomerKey()
     {
         Console.WriteLine("Please input the customer key");
-        string id = Console.ReadLine()?? "";
+        string customerKey = Console.ReadLine() ?? "";
 
         var httpClient = new HttpClient();
         var customerService = new CustomerService(httpClient);
-        var customer = await customerService.GetCustomerById(id);
+        var customer = await customerService.GetCustomerByCustomerKey(customerKey);
 
         if (customer != null)
         {
@@ -118,14 +125,15 @@ static class Program
             Console.WriteLine("Customer not found.");
         }
     }
-    private static async Task GetPackageById()
+
+    private static async Task GetPackageByPackageKey()
     {
         Console.WriteLine("Please input the package key");
-        string id = Console.ReadLine() ?? "";
+        string packageKey = Console.ReadLine() ?? "";
 
         var httpClient = new HttpClient();
         var packageService = new PackageService(httpClient);
-        var package = await packageService.GetPackageById(id);
+        var package = await packageService.GetPackageByPackageKey(packageKey);
 
         if (package != null)
         {
@@ -142,36 +150,90 @@ static class Program
             Console.WriteLine("Customer not found.");
         }
     }
-    private static async Task GetConsignmentById()
+
+    private static async Task GetConsignmentByConsignmentKey()
     {
         Console.WriteLine("Please input the consignment key");
-    string id = Console.ReadLine() ?? "";
+        string consignmentKey = Console.ReadLine() ?? "";
 
-    var httpClient = new HttpClient();
-    var consignmentService = new ConsignmentService(httpClient);
-    var consignment = await consignmentService.GetConsignmentById(id);
+        var httpClient = new HttpClient();
+        var consignmentService = new ConsignmentService(httpClient);
+        var consignment = await consignmentService.GetConsignmentByConsignmentKey(consignmentKey);
 
-    if (consignment != null)
-    {
-        Console.WriteLine($"Consignment key : {consignment.ConsignmentKey}");
-        Console.WriteLine($"Package key : {consignment.PackageKey}");
-        Console.WriteLine($"Name : {consignment.Name}");
-        Console.WriteLine($"State : {consignment.State}");
-        Console.WriteLine($"Channel : {consignment.Channel}");
-        Console.WriteLine($"Created at : {consignment.CreatedAt}");
-        Console.WriteLine($"Updated at : {consignment.UpdatedAt}");
-        foreach (Event eventdata in consignment.Events)
+        if (consignment != null)
         {
-            Console.WriteLine($"Events:");
-            Console.WriteLine($"State : {eventdata.State}");
-            Console.WriteLine($"Text : {eventdata.Text}");
-            Console.WriteLine($"Created at : {eventdata.CreatedAt}");
-            Console.WriteLine(" ");
+            Console.WriteLine($"Consignment key : {consignment.ConsignmentKey}");
+            Console.WriteLine($"Package key : {consignment.PackageKey}");
+            Console.WriteLine($"Name : {consignment.Name}");
+            Console.WriteLine($"State : {consignment.State}");
+            Console.WriteLine($"Channel : {consignment.Channel}");
+            Console.WriteLine($"Created at : {consignment.CreatedAt}");
+            Console.WriteLine($"Updated at : {consignment.UpdatedAt}");
+            foreach (Event eventdata in consignment.Events)
+            {
+                Console.WriteLine($"Events:");
+                Console.WriteLine($"State : {eventdata.State}");
+                Console.WriteLine($"Text : {eventdata.Text}");
+                Console.WriteLine($"Created at : {eventdata.CreatedAt}");
+                Console.WriteLine(" ");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Consignment not found.");
         }
     }
-    else
+    private static async Task GetConsignmentByPackageKey()
     {
-        Console.WriteLine("Consignment not found.");
+        Console.WriteLine("Please input the package key");
+        string packageKey = Console.ReadLine() ?? "";
+
+        var httpClient = new HttpClient();
+        var consignmentService = new ConsignmentService(httpClient);
+        var consignments = await consignmentService.GetConsignmentByPackageKey(packageKey);
+
+        foreach (var consignment in consignments)
+        {
+            Console.WriteLine($"Consignment key : {consignment.ConsignmentKey}");     
+            Console.WriteLine($"Package key : {consignment.PackageKey}");
+            Console.WriteLine($"Name : {consignment.Name}");
+            Console.WriteLine($"State : {consignment.State}");
+            Console.WriteLine($"Channel : {consignment.Channel}");
+            Console.WriteLine($"Created at : {consignment.CreatedAt}");
+            Console.WriteLine($"Updated at : {consignment.UpdatedAt}");
+            foreach (Event eventdata in consignment.Events)
+            {
+                Console.WriteLine($"Events:");
+                Console.WriteLine($"State : {eventdata.State}");
+                Console.WriteLine($"Text : {eventdata.Text}");
+                Console.WriteLine($"Created at : {eventdata.CreatedAt}");
+                Console.WriteLine(" ");
+            }
+        }
     }
+
+    private static async Task GetPackageByCustomerKey()
+    {
+        Console.WriteLine("Please input the customer key");
+        string customerKey = Console.ReadLine() ?? "";
+
+        var httpClient = new HttpClient();
+        var packageService = new PackageService(httpClient);
+        var package = await packageService.GetPackageByCustomerKey(customerKey);
+
+        if (package != null)
+        {
+            Console.WriteLine($"Package key : {package.PackageKey}");
+            Console.WriteLine($"Customer key : {package.CustomerKey}");
+            Console.WriteLine($"Name : {package.Name}");
+            Console.WriteLine($"State : {package.State}");
+            Console.WriteLine($"Created at : {package.CreatedAt}");
+            Console.WriteLine($"Updated at : {package.UpdatedAt}");
+            Console.WriteLine(" ");
+        }
+        else
+        {
+            Console.WriteLine("Customer not found.");
+        }
     }
 }

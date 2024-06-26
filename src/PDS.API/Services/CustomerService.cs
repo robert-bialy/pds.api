@@ -7,14 +7,14 @@ using PDS.API.Models;
 public interface ICustomerService
 {
     Task<Customer[]?> GetCustomers();
-    Task<Customer?> GetCustomerById(string id);
+    Task<Customer?> GetCustomerByCustomerKey(string customerKey);
 }
 
 public class CustomerService(HttpClient httpClient) : ICustomerService
 {
-    public async Task<Customer?> GetCustomerById(string id)
+    public async Task<Customer?> GetCustomerByCustomerKey(string customerKey)
     {
-        var response = await httpClient.GetAsync($"http://localhost:5000/api/v1/documents/customers/{id}");
+        var response = await httpClient.GetAsync($"http://localhost:5000/api/v1/documents/customers/{customerKey}");
         var content = await response.Content.ReadAsStringAsync();
 
         try
