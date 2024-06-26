@@ -12,7 +12,7 @@ public class Package
     public string Name { get; set; }
     [JsonPropertyName("state")]
     public int State { get; set; }
-    [JsonPropertyName("CreatedAt")]
+    [JsonPropertyName("createdAt")]
     public DateTime CreatedAt { get; set; }
     [JsonPropertyName("updatedAt")]
     public DateTime UpdatedAt { get; set; }
