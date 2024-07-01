@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDS.API", "PDS.API\PDS.API.csproj", "{7E5EDB8C-666F-4122-BBA5-601BA54B7FEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDS.API.Tests", "PDS.API.Tests\PDS.API.Tests.csproj", "{C705A5C9-32F0-4BCD-B820-387E28963636}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,6 +20,10 @@ Global
 		{7E5EDB8C-666F-4122-BBA5-601BA54B7FEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E5EDB8C-666F-4122-BBA5-601BA54B7FEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E5EDB8C-666F-4122-BBA5-601BA54B7FEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C705A5C9-32F0-4BCD-B820-387E28963636}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C705A5C9-32F0-4BCD-B820-387E28963636}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C705A5C9-32F0-4BCD-B820-387E28963636}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C705A5C9-32F0-4BCD-B820-387E28963636}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection

@@ -1,8 +1,7 @@
-﻿using System;
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿using System.Text.Json;
 using PDS.API.Models;
+
+namespace PDS.API.Services;
 
 public interface ICustomerService
 {
@@ -14,7 +13,7 @@ public class CustomerService(HttpClient httpClient) : ICustomerService
 {
     public async Task<Customer?> GetCustomerByCustomerKey(string customerKey)
     {
-        var response = await httpClient.GetAsync($"http://localhost:5000/api/v1/documents/customers/{customerKey}");
+        var response = await httpClient.GetAsync($"api/v1/documents/customers/{customerKey}");
         var content = await response.Content.ReadAsStringAsync();
 
         try
@@ -32,7 +31,7 @@ public class CustomerService(HttpClient httpClient) : ICustomerService
 
     public async Task<Customer[]?> GetCustomers()
     {
-        var response = await httpClient.GetAsync("http://localhost:5000/api/v1/documents/customers");
+        var response = await httpClient.GetAsync("api/v1/documents/customers");
         var content = await response.Content.ReadAsStringAsync();
 
         try
