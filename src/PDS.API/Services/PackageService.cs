@@ -7,15 +7,15 @@ public interface IPackageService
 {
     Task<Package[]?> GetPackages();
     Task<Package?> GetPackageByPackageKey(string packageKey);
-    Task<Package?> GetPackageByCustomerKey(string customerKey);
+    Task<Package[]> GetPackageByCustomerKey(string customerKey);
 }
 
 
 public class PackageService(HttpClient httpClient) : IPackageService
 {
-    public async Task<Package?> GetPackageByCustomerKey(string customerKey)
+    public async Task<Package[]> GetPackageByCustomerKey(string customerKey)
     {
-        var response = await httpClient.GetAsync($"http://localhost:5000/api/v1/documents/customers/{customerKey}/packages");
+        var response = await httpClient.GetAsync($"/api/v1/documents/customers/{customerKey}/packages");
         if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
         {
             return null;
@@ -25,8 +25,8 @@ public class PackageService(HttpClient httpClient) : IPackageService
 
         try
         {
-            var packageResponse = JsonSerializer.Deserialize<Package>(content);
-            return packageResponse;
+            var packageResponse = JsonSerializer.Deserialize<Response<Package>>(content);
+            return packageResponse.Data;
         }
         catch (JsonException ex)
         {
@@ -38,7 +38,7 @@ public class PackageService(HttpClient httpClient) : IPackageService
 
     public async Task<Package?> GetPackageByPackageKey(string packageKey)
     {
-        var response = await httpClient.GetAsync($"http://localhost:5000/api/v1/documents/packages/{packageKey}");
+        var response = await httpClient.GetAsync($"/api/v1/documents/packages/{packageKey}");
         if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
         {
             return null;
@@ -61,7 +61,7 @@ public class PackageService(HttpClient httpClient) : IPackageService
 
     public async Task<Package[]?> GetPackages()
     {
-        var response = await httpClient.GetAsync("http://localhost:5000/api/v1/documents/packages?PageSize=1000&PageIndex=0");
+        var response = await httpClient.GetAsync("/api/v1/documents/packages?PageSize=1000&PageIndex=0");
         if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
         {
             return null;

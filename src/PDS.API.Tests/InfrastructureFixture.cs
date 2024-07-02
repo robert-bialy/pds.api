@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PDS.API.Models;
 using PDS.API.Services;
 
 namespace PDS.API.Tests;
@@ -24,6 +25,18 @@ public class InfrastructureFixture
         services.AddHttpClient<ICustomerService, CustomerService>(client =>
         {
             client.BaseAddress = new Uri(apiUrl);
+        });
+        ServiceProvider = services.BuildServiceProvider();
+
+        services.AddHttpClient<IPackageService, PackageService>(package =>
+        {
+            package.BaseAddress = new Uri(apiUrl);
+        });
+        ServiceProvider = services.BuildServiceProvider();
+
+        services.AddHttpClient<IConsignmentService, ConsignmentService>(consignment =>
+        {
+            consignment.BaseAddress = new Uri(apiUrl);
         });
         ServiceProvider = services.BuildServiceProvider();
     }

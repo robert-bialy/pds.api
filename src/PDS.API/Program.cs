@@ -221,9 +221,9 @@ static class Program
 
         var httpClient = new HttpClient();
         var packageService = new PackageService(httpClient);
-        var package = await packageService.GetPackageByCustomerKey(customerKey);
+        var packages = await packageService.GetPackageByCustomerKey(customerKey);
 
-        if (package != null)
+        foreach (var package in packages)
         {
             Console.WriteLine($"Package key : {package.PackageKey}");
             Console.WriteLine($"Customer key : {package.CustomerKey}");
@@ -232,10 +232,6 @@ static class Program
             Console.WriteLine($"Created at : {package.CreatedAt}");
             Console.WriteLine($"Updated at : {package.UpdatedAt}");
             Console.WriteLine(" ");
-        }
-        else
-        {
-            Console.WriteLine("Customer not found.");
         }
     }
 }

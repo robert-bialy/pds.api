@@ -15,7 +15,7 @@ public class ConsignmentService(HttpClient httpClient) : IConsignmentService
 {
     public async Task<Consignment[]?> GetConsignmentByPackageKey(string packageKey)
     {
-        var response = await httpClient.GetAsync($"http://localhost:5000/api/v1/documents/packages/{packageKey}/consignments");
+        var response = await httpClient.GetAsync($"/api/v1/documents/packages/{packageKey}/consignments");
         if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
         {
             return null;
@@ -37,7 +37,7 @@ public class ConsignmentService(HttpClient httpClient) : IConsignmentService
     }
     public async Task<Consignment?> GetConsignmentByConsignmentKey(string consignmentKey)
     {
-        var response = await httpClient.GetAsync($"http://localhost:5000/api/v1/documents/consignments/{consignmentKey}");
+        var response = await httpClient.GetAsync($"/api/v1/documents/consignments/{consignmentKey}");
         if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
         {
             return null;
@@ -60,7 +60,7 @@ public class ConsignmentService(HttpClient httpClient) : IConsignmentService
 
     public async Task<Consignment[]?> GetConsignment()
     {
-        var response = await httpClient.GetAsync("http://localhost:5000/api/v1/documents/consignments?PageSize=1000&PageIndex=0");
+        var response = await httpClient.GetAsync("/api/v1/documents/consignments?PageSize=1000&PageIndex=0");
         if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
         {
             return null;
