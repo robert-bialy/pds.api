@@ -25,7 +25,6 @@ public class InfrastructureFixture
         {
             client.BaseAddress = new Uri(apiUrl);
         });
-        services.AddTransient<ICustomerService, CustomerService>();
         ServiceProvider = services.BuildServiceProvider();
     }
 }
