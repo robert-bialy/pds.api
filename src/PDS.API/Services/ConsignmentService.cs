@@ -5,7 +5,7 @@ namespace PDS.API.Services;
 
 public interface IConsignmentService
 {
-    Task<Consignment[]?> GetConsignment();
+    Task<Consignment[]?> GetConsignments();
     Task<Consignment?> GetConsignmentByConsignmentKey(string consignmentKey);
     Task<Consignment[]?> GetConsignmentByPackageKey(string packageKey);
 
@@ -58,7 +58,7 @@ public class ConsignmentService(HttpClient httpClient) : IConsignmentService
         return null;
     }
 
-    public async Task<Consignment[]?> GetConsignment()
+    public async Task<Consignment[]?> GetConsignments()
     {
         var response = await httpClient.GetAsync("/api/v1/documents/consignments?PageSize=1000&PageIndex=0");
         if (response.StatusCode == System.Net.HttpStatusCode.NotFound)

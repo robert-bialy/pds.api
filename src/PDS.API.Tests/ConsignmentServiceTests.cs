@@ -12,8 +12,9 @@ public class ConsignmentServiceTests
         var fixture = new InfrastructureFixture();
         var consignmentService = fixture.ServiceProvider.GetService<IConsignmentService>();
 
-        var consignments = await consignmentService.GetConsignment();
+        var consignments = await consignmentService.GetConsignments();
 
+        Assert.IsNotNull(consignments);
         Assert.That(consignments, Is.Not.Empty);
     }
 

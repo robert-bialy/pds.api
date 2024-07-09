@@ -39,5 +39,29 @@ public class InfrastructureFixture
             consignment.BaseAddress = new Uri(apiUrl);
         });
         ServiceProvider = services.BuildServiceProvider();
+
+        services.AddHttpClient<IDetailService, DetailService>(detail =>
+        {
+            detail.BaseAddress = new Uri(apiUrl);
+        });
+        ServiceProvider = services.BuildServiceProvider();
+
+        services.AddHttpClient<IChannelService, ChannelService>(channel =>
+        {
+            channel.BaseAddress = new Uri(apiUrl);
+        });
+        ServiceProvider = services.BuildServiceProvider();
+
+        services.AddHttpClient<IStateService, StateService>(state =>
+        {
+            state.BaseAddress = new Uri(apiUrl);
+        });
+        ServiceProvider = services.BuildServiceProvider();
+
+        services.AddHttpClient<IStatisticsService, StatisticsService>(statistics =>
+        {
+            statistics.BaseAddress = new Uri(apiUrl);
+        });
+        ServiceProvider = services.BuildServiceProvider();
     }
 }
