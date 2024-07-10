@@ -7,7 +7,7 @@ namespace PDS.API.Tests;
 public class ConsignmentServiceTests
 {
     [Test]
-    public async Task GetConsignment()
+    public async Task GetConsignments()
     {
         var fixture = new InfrastructureFixture();
         var consignmentService = fixture.ServiceProvider.GetService<IConsignmentService>();

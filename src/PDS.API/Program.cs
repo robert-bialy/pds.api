@@ -7,10 +7,10 @@ static class Program
 {
     public static async Task Main()
     {
-        Console.WriteLine("For GetCustomers press 1, for get GetPackages press 2, for get GetConsignments press 3, for GetDetails press 4, " +
-            "for GetStates press 5, for GetChannels press 6, for GetCustomerByCustomerKey press 7, for GetPackageByPackageKey press 8, " +
-            "for GetConsignmentByConsignmentKey press 9, for GetConsignmentByPackageKey press 10, for GetPackageByCustomerKey press 11, " +
-            "for  GetDetailsByPackageKey press 12, for  GetStatisticsByCustomerKey press 13");
+        Console.WriteLine("For GetCustomers press 1, for get GetPackages press 2, for get GetConsignments press 3, " +
+            "for GetStates press 4, for GetChannels press 5, for GetCustomerByCustomerKey press 6, for GetPackageByPackageKey press 7, " +
+            "for GetConsignmentByConsignmentKey press 8, for GetConsignmentByPackageKey press 9, for GetPackageByCustomerKey press 10, " +
+            "for  GetDetailsByPackageKey press 11, for  GetStatisticsByCustomerKey press 12");
         var userInput = Console.ReadLine() ?? "";
         if (userInput == "1")
         {
@@ -26,41 +26,37 @@ static class Program
         }
         if (userInput == "4")
         {
-            await GetDetails();
+            await GetStates();
         }
         if (userInput == "5")
         {
-            await GetStates();
+            await GetChannels();
         }
         if (userInput == "6")
         {
-            await GetChannels();
+            await GetCustomerByCustomerKey();
         }
         if (userInput == "7")
         {
-            await GetCustomerByCustomerKey();
+            await GetPackageByPackageKey();
         }
         if (userInput == "8")
         {
-            await GetPackageByPackageKey();
+            await GetConsignmentByConsignmentKey();
         }
         if (userInput == "9")
         {
-            await GetConsignmentByConsignmentKey();
+            await GetConsignmentByPackageKey();
         }
         if (userInput == "10")
         {
-            await GetConsignmentByPackageKey();
+            await GetPackageByCustomerKey();
         }
         if (userInput == "11")
         {
-            await GetPackageByCustomerKey();
-        }
-        if (userInput == "12")
-        {
             await GetDetailsByPackageKey();
         }
-        if (userInput == "13")
+        if (userInput == "12")
         {
             await GetStatisticsByCustomerKey();
         }
@@ -128,27 +124,6 @@ static class Program
                 Console.WriteLine($"Text : {eventdata.CreatedAt}");
                 Console.WriteLine(" ");
             }
-        }
-    }
-
-    private static async Task GetDetails() //WIP
-    {
-        var httpClient = new HttpClient();
-        var detailService = new DetailService(httpClient);
-        var details = await detailService.GetDetails();
-
-        foreach (var detail in details)
-        {
-            Console.WriteLine($"Package key: {detail.PackageKey}");
-            foreach (Category categorydata in detail.Categories)
-            {
-                Console.WriteLine($"Categories:");
-                Console.WriteLine($"Channel : {categorydata.Channel}");
-                Console.WriteLine($"State : {categorydata.State}");
-                Console.WriteLine($"Count : {categorydata.Count}");
-                Console.WriteLine(" ");
-            }
-
         }
     }
 

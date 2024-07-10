@@ -6,16 +6,6 @@ namespace PDS.API.Tests;
 
 public class DetailServiceTests
 {
-    [Test]
-    public async Task GetDetails()
-    {
-        var fixture = new InfrastructureFixture();
-        var detailService = fixture.ServiceProvider.GetService<IDetailService>();
-
-        var details = await detailService.GetDetails();
-
-        Assert.That(details, Is.Not.Empty);
-    }
 
     [Test]
     public async Task GetDetailsByPackageKey()

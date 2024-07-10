@@ -13,7 +13,7 @@ public class ChannelService(HttpClient httpClient) : IChannelService
 {
     public async Task<Channel[]?> GetChannels()
     {
-        var response = await httpClient.GetAsync("api/v1/documents/consignments/channels");
+        var response = await httpClient.GetAsync("/api/v1/documents/consignments/channels");
         var content = await response.Content.ReadAsStringAsync();
 
         try

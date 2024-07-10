@@ -20,10 +20,6 @@ public class CustomerServiceTests
     [Test]
     public async Task GetCustomerByCustomerKey()
     {
-        //int x = 5;
-        //Assert.AreEqual(x, 1);
-        //Assert.IsNotNull(new object());
-
         var fixture = new InfrastructureFixture();
         var customerService = fixture.ServiceProvider.GetService<ICustomerService>();
 

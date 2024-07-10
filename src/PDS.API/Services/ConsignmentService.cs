@@ -60,7 +60,7 @@ public class ConsignmentService(HttpClient httpClient) : IConsignmentService
 
     public async Task<Consignment[]?> GetConsignments()
     {
-        var response = await httpClient.GetAsync("/api/v1/documents/consignments?PageSize=1000&PageIndex=0");
+        var response = await httpClient.GetAsync("/api/v1/documents/consignments");
         if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
         {
             return null;
