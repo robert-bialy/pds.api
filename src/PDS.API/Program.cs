@@ -7,7 +7,10 @@ static class Program
 {
     public static async Task Main()
     {
-        Console.WriteLine("For get documents/ customers press 1, for get documents/ packages press 2, for get documents/ cosignments press 3, for GetCustomerByCustomerKey press 4, for GetPackageByPackageKey press 5, for GetConsignmentByConsignmentKey press 6, for GetConsignmentByPackageKey press 7, for GetPackageByCustomerKey press 8");
+        Console.WriteLine("For GetCustomers press 1, for get GetPackages press 2, for get GetConsignments press 3, " +
+            "for GetStates press 4, for GetChannels press 5, for GetCustomerByCustomerKey press 6, for GetPackageByPackageKey press 7, " +
+            "for GetConsignmentByConsignmentKey press 8, for GetConsignmentByPackageKey press 9, for GetPackageByCustomerKey press 10, " +
+            "for  GetDetailsByPackageKey press 11, for  GetStatisticsByCustomerKey press 12");
         var userInput = Console.ReadLine() ?? "";
         if (userInput == "1")
         {
@@ -23,23 +26,43 @@ static class Program
         }
         if (userInput == "4")
         {
-            await GetCustomerByCustomerKey();
+            await GetStates();
         }
         if (userInput == "5")
         {
-            await GetPackageByPackageKey();
+            await GetChannels();
         }
         if (userInput == "6")
         {
-            await GetConsignmentByConsignmentKey();
+            await GetCustomerByCustomerKey();
         }
         if (userInput == "7")
         {
+            await GetPackageByPackageKey();
+        }
+        if (userInput == "8")
+        {
+            await GetConsignmentByConsignmentKey();
+        }
+        if (userInput == "9")
+        {
             await GetConsignmentByPackageKey();
+        }
+        if (userInput == "10")
+        {
+            await GetPackageByCustomerKey();
+        }
+        if (userInput == "11")
+        {
+            await GetDetailsByPackageKey();
+        }
+        if (userInput == "12")
+        {
+            await GetStatisticsByCustomerKey();
         }
         else
         {
-            await GetPackageByCustomerKey();
+            Console.WriteLine("Invalid input");
         }
     }
 
@@ -82,7 +105,7 @@ static class Program
     {
         var httpClient = new HttpClient();
         var consignmentService = new ConsignmentService(httpClient);
-        var consignments = await consignmentService.GetConsignment();
+        var consignments = await consignmentService.GetConsignments();
 
         foreach (Consignment consignment in consignments)
         {
@@ -124,6 +147,32 @@ static class Program
         else
         {
             Console.WriteLine("Customer not found.");
+        }
+    }
+    private static async Task GetStates() //WIP
+    {
+        var httpClient = new HttpClient();
+        var stateService = new StateService(httpClient);
+        var states = await stateService.GetStates();
+
+        foreach (var state in states)
+        {
+            Console.WriteLine($"Value: {state.Value}");
+            Console.WriteLine($"Name: {state.Name}");
+            Console.WriteLine(" ");
+        }
+    }
+    private static async Task GetChannels() //WIP
+    {
+        var httpClient = new HttpClient();
+        var channelService = new ChannelService(httpClient);
+        var channels = await channelService.GetChannels();
+
+        foreach (var channel in channels)
+        {
+            Console.WriteLine($"Value: {channel.Value}");
+            Console.WriteLine($"Name: {channel.Name}");
+            Console.WriteLine(" ");
         }
     }
 
@@ -196,7 +245,7 @@ static class Program
 
         foreach (var consignment in consignments)
         {
-            Console.WriteLine($"Consignment key : {consignment.ConsignmentKey}");     
+            Console.WriteLine($"Consignment key : {consignment.ConsignmentKey}");
             Console.WriteLine($"Package key : {consignment.PackageKey}");
             Console.WriteLine($"Name : {consignment.Name}");
             Console.WriteLine($"State : {consignment.State}");
@@ -231,6 +280,48 @@ static class Program
             Console.WriteLine($"State : {package.State}");
             Console.WriteLine($"Created at : {package.CreatedAt}");
             Console.WriteLine($"Updated at : {package.UpdatedAt}");
+            Console.WriteLine(" ");
+        }
+    }
+    private static async Task GetDetailsByPackageKey() //WIP
+    {
+        Console.WriteLine("Please input the package key");
+        string packageKey = Console.ReadLine() ?? "";
+
+        var httpClient = new HttpClient();
+        var detailService = new DetailService(httpClient);
+        var details = await detailService.GetDetailsByPackageKey(packageKey);
+
+        Console.WriteLine($"Package key: {details.PackageKey}");
+        foreach (Category categorydata in details.Categories)
+        {
+            Console.WriteLine($"Categories:");
+            Console.WriteLine($"Channel : {categorydata.Channel}");
+            Console.WriteLine($"State : {categorydata.State}");
+            Console.WriteLine($"Count : {categorydata.Count}");
+            Console.WriteLine(" ");
+        }
+    }
+
+    private static async Task GetStatisticsByCustomerKey() //WIP
+    {
+        Console.WriteLine("Please input the customer key");
+        string customerKey = Console.ReadLine() ?? "";
+
+        var httpClient = new HttpClient();
+        var statisticsService = new StatisticsService(httpClient);
+        var statistics = await statisticsService.GetStatisticsByCustomerKey(customerKey);
+
+        Console.WriteLine($"Customer key : {statistics.CustomerKey}");
+        Console.WriteLine($"From : {statistics.From}");
+        Console.WriteLine($"To : {statistics.To}"); ;
+        foreach (Data datadata in statistics.Data)
+        {
+            Console.WriteLine($"Data:");
+            Console.WriteLine($"Date : {datadata.Date}");
+            Console.WriteLine($"State : {datadata.State}");
+            Console.WriteLine($"Count : {datadata.Channel}");
+            Console.WriteLine($"Count : {datadata.Value}");
             Console.WriteLine(" ");
         }
     }
