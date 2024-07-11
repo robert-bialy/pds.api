@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PDS.API.Models;
 using PDS.API.Services;
 
 namespace PDS.API.Tests;

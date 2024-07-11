@@ -1,9 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
-using PDS.API.Models;
 using PDS.API.Services;
 
-namespace PDS.API.Tests;
+namespace PDS.API.Tests.Services;
 
 public class ConsignmentServiceTests
 {
