@@ -20,4 +20,6 @@ public class Consignment
     public DateTime UpdatedAt { get; set; }
     [JsonPropertyName("events")]
     public Event[] Events { get; set; }
+    [JsonPropertyName("attributes")]
+    public Dictionary<string,string> Attributes { get; set; }
 }

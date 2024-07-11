@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
+using PDS.API.Models;
 using PDS.API.Services;
 
 namespace PDS.API.Tests;
@@ -24,9 +25,11 @@ public class ConsignmentServiceTests
         var fixture = new InfrastructureFixture();
         var consignmentService = fixture.ServiceProvider.GetRequiredService<IConsignmentService>();
 
-        var consignment = await consignmentService.GetConsignmentByConsignmentKey("c7f3aafa-0e19-f95f-c8b6-e0c12645744e");
+        var consignment = await consignmentService.GetConsignmentByConsignmentKey("dbab46f0-79f7-3c18-50c1-4b7cb18e51ce");
 
         Assert.That(consignment, Is.Not.Null);
+        Assert.That(consignment.Attributes, Is.Not.Null);
+        Assert.That(consignment.Attributes, Is.Not.Empty);
     }
 
     [Test]
