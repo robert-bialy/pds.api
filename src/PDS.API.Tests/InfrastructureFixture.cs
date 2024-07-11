@@ -19,6 +19,8 @@ public class InfrastructureFixture
         Configuration = configurationBuilder.Build();
         
         var apiUrl = Configuration["Statistics:ApiUrl"];
+        if (string.IsNullOrWhiteSpace(apiUrl)) 
+            throw new ArgumentNullException(nameof(apiUrl));
 
         Configuration = configurationBuilder.Build();
 

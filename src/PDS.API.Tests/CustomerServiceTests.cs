@@ -10,7 +10,7 @@ public class CustomerServiceTests
     public async Task GetCustomers()
     {
         var fixture = new InfrastructureFixture();
-        var customerService = fixture.ServiceProvider.GetService<ICustomerService>();
+        var customerService = fixture.ServiceProvider.GetRequiredService<ICustomerService>();
 
         var customers = await customerService.GetCustomers();
 
@@ -21,12 +21,15 @@ public class CustomerServiceTests
     public async Task GetCustomerByCustomerKey()
     {
         var fixture = new InfrastructureFixture();
-        var customerService = fixture.ServiceProvider.GetService<ICustomerService>();
+        var customerService = fixture.ServiceProvider.GetRequiredService<ICustomerService>();
 
         var customer = await customerService.GetCustomerByCustomerKey("31c1652f-412d-c7e5-f374-2371ed6d8479");
 
-        Assert.IsNotNull(customer);
-        Assert.AreEqual(customer.Number, 778510);
-        Assert.AreEqual(customer.Name, "Lindberg - Gunnarsson");
+        Assert.That(customer, Is.Not.Null);
+        Assert.Multiple(() =>
+        {
+            Assert.That(customer.Number, Is.EqualTo(778510));
+            Assert.That(customer.Name, Is.EqualTo("Lindberg - Gunnarsson"));
+        });
     }
 }

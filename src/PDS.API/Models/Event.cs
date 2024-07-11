@@ -5,7 +5,7 @@ namespace PDS.API.Models;
 public class Event
 {
     [JsonPropertyName("state")]
-    public int State { get; set; }
+    public State State { get; set; }
     [JsonPropertyName("text")]
     public string Text { get; set; }
     [JsonPropertyName("createdAt")]

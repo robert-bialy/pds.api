@@ -13,13 +13,11 @@ public class StatisticsServiceTests
     {
 
         var fixture = new InfrastructureFixture();
-        var statisticsService = fixture.ServiceProvider.GetService<IStatisticsService>();
+        var statisticsService = fixture.ServiceProvider.GetRequiredService<IStatisticsService>();
 
         var statistics = await statisticsService.GetStatisticsByCustomerKey("31c1652f-412d-c7e5-f374-2371ed6d8479");
 
-        Assert.IsNotNull(statistics);
-        Assert.AreEqual(statistics.CustomerKey, "31c1652f-412d-c7e5-f374-2371ed6d8479");
-        //Assert.AreEqual(statistics.From,"");
-        //Assert.AreEqual(statistics.To, "");  For both I was unable to get the data
+        Assert.That(statistics, Is.Not.Null);
+        Assert.That(statistics.CustomerKey, Is.EqualTo("31c1652f-412d-c7e5-f374-2371ed6d8479"));
     }
 }

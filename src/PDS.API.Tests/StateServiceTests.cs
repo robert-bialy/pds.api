@@ -10,11 +10,11 @@ public class StateServiceTests
     public async Task GetStates()
     {
         var fixture = new InfrastructureFixture();
-        var stateService = fixture.ServiceProvider.GetService<IStateService>();
+        var stateService = fixture.ServiceProvider.GetRequiredService<IStateService>();
 
         var states = await stateService.GetStates();
 
-        Assert.IsNotNull(states);
+        Assert.That(states, Is.Not.Null);
         Assert.That(states, Is.Not.Empty);
     }
 }

@@ -12,11 +12,11 @@ public class DetailServiceTests
     {
 
         var fixture = new InfrastructureFixture();
-        var detailService = fixture.ServiceProvider.GetService<IDetailService>();
+        var detailService = fixture.ServiceProvider.GetRequiredService<IDetailService>();
 
         var detail = await detailService.GetDetailsByPackageKey("8f74734a-6a6c-1520-61a3-57bc022100cc");
 
-        Assert.IsNotNull(detail);
-        Assert.AreEqual(detail.PackageKey, "8f74734a-6a6c-1520-61a3-57bc022100cc");
+        Assert.That(detail, Is.Not.Null);
+        Assert.That(detail.PackageKey, Is.EqualTo("8f74734a-6a6c-1520-61a3-57bc022100cc"));
     }
 }

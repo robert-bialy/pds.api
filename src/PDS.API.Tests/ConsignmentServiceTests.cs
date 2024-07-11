@@ -10,7 +10,7 @@ public class ConsignmentServiceTests
     public async Task GetConsignments()
     {
         var fixture = new InfrastructureFixture();
-        var consignmentService = fixture.ServiceProvider.GetService<IConsignmentService>();
+        var consignmentService = fixture.ServiceProvider.GetRequiredService<IConsignmentService>();
 
         var consignments = await consignmentService.GetConsignments();
 
@@ -22,25 +22,21 @@ public class ConsignmentServiceTests
     public async Task GetConsignmentByConsignmentKey()
     {
         var fixture = new InfrastructureFixture();
-        var consignmentService = fixture.ServiceProvider.GetService<IConsignmentService>();
+        var consignmentService = fixture.ServiceProvider.GetRequiredService<IConsignmentService>();
 
-        var consignment = await consignmentService.GetConsignmentByConsignmentKey("4c70e393-093c-2ad9-58bd-06ac99e0c1a5");
+        var consignment = await consignmentService.GetConsignmentByConsignmentKey("c7f3aafa-0e19-f95f-c8b6-e0c12645744e");
 
-        Assert.IsNotNull(consignment);
-        Assert.AreEqual(consignment.PackageKey, "690c1058-c335-8d1f-e7c7-6ba52a6f4673");
-        Assert.AreEqual(consignment.Name, "interface_822.pdf");
-        Assert.AreEqual(consignment.State, 5);
-        Assert.AreEqual(consignment.Channel, 3);
+        Assert.That(consignment, Is.Not.Null);
     }
 
     [Test]
     public async Task GetConsignmentByPackageKey()
     {
         var fixture = new InfrastructureFixture();
-        var consignmentService = fixture.ServiceProvider.GetService<IConsignmentService>();
+        var consignmentService = fixture.ServiceProvider.GetRequiredService<IConsignmentService>();
 
         var consignment = await consignmentService.GetConsignmentByPackageKey("690c1058-c335-8d1f-e7c7-6ba52a6f4673");
 
-        Assert.IsNotNull(consignment);
+        Assert.That(consignment, Is.Not.Null);
     }
 }

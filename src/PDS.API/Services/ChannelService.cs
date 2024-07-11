@@ -18,8 +18,8 @@ public class ChannelService(HttpClient httpClient) : IChannelService
 
         try
         {
-            var channelResponse = JsonSerializer.Deserialize<Response<Channel>>(content);
-            return channelResponse?.Data;
+            var channelResponse = JsonSerializer.Deserialize<Channel[]>(content);
+            return channelResponse;
         }
         catch (JsonException ex)
         {

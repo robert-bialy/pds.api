@@ -26,7 +26,7 @@ public class ConsignmentService(HttpClient httpClient) : IConsignmentService
         try
         {
             var cosignmentResponse = JsonSerializer.Deserialize<Response<Consignment>>(content);
-            return cosignmentResponse.Data;
+            return cosignmentResponse?.Data;
         }
         catch (JsonException ex)
         {
@@ -61,11 +61,6 @@ public class ConsignmentService(HttpClient httpClient) : IConsignmentService
     public async Task<Consignment[]?> GetConsignments()
     {
         var response = await httpClient.GetAsync("/api/v1/documents/consignments");
-        if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
-        {
-            return null;
-        }
-
         var content = await response.Content.ReadAsStringAsync();
 
         try

@@ -10,11 +10,11 @@ public class ChannelServiceTests
     public async Task GetChannels()
     {
         var fixture = new InfrastructureFixture();
-        var stateService = fixture.ServiceProvider.GetService<IChannelService>();
+        var channelService = fixture.ServiceProvider.GetRequiredService<IChannelService>();
 
-        var states = await stateService.GetChannels();
+        var channels = await channelService.GetChannels();
 
-        Assert.IsNotNull(states);
-        Assert.That(states, Is.Not.Empty);
+        Assert.That(channels, Is.Not.Null);
+        Assert.That(channels, Is.Not.Empty);
     }
 }

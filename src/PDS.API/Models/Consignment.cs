@@ -11,14 +11,13 @@ public class Consignment
     [JsonPropertyName("name")]
     public string Name { get; set; }
     [JsonPropertyName("state")]
-    public int State { get; set; }
+    public State State { get; set; }
     [JsonPropertyName("channel")]
-    public int Channel { get; set; }
+    public Channel Channel { get; set; }
     [JsonPropertyName("createdAt")]
     public DateTime CreatedAt { get; set; }
     [JsonPropertyName("updatedAt")]
     public DateTime UpdatedAt { get; set; }
     [JsonPropertyName("events")]
     public Event[] Events { get; set; }
-
 }
