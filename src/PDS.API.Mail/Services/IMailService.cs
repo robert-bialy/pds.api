@@ -2,5 +2,5 @@
 
 public interface IMailService
 {
-    Task SendEmail(string email, string message);
+    Task<bool> SendEmail(string email, string subject, string message);
 }

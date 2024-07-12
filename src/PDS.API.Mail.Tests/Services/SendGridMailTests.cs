@@ -12,6 +12,7 @@ public class Tests
         var fixture = new InfrastructureFixture();
         var mailService = fixture.ServiceProvider.GetRequiredService<IMailService>();
 
-        await mailService.SendEmail("", "siemano!!!");
+        var result = await mailService.SendEmail("robert@madmax.consulting", "subject", "siemano!!!");
+        Assert.That(result, Is.True);
     }
 }
